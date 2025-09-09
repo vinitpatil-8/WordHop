@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+@theme {
+    --font-frank: "Libre Franklin", sans-serif;
+    --font-poppins: "Poppins", sans-serif;
+}
