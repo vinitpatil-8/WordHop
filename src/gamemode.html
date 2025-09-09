@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/dist/output.css" rel="stylesheet">
+    <link rel="icon" href="/public/favicon.svg" type="image/svg+xml">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <title>Word Hop</title>
+</head>
+
+<body class="bg-[#e3e3e1]">
+    <div>
+        <div
+            class="w-screen h-[40.8px] border-solid border-b border-[#ffffff] shadow-sm flex items-center justify-center font-medium text-4xl [word-spacing:0.3rem] font-poppins">
+            WORD HOP</div>
+        <div class="flex flex-col w-screen h-[calc(100vh-40.8px)] items-center">
+            <p class="mt-40 text-2xl underline font-poppins">SELECT YOUR GAMEMODE</p>
+            <div class="flex flex-col mt-8 gap-8 p-4">
+                <button class="px-12 py-2.5 font-medium border border-solid border-black bg-[#e3e3e1] hover:bg-black hover:text-[#e3e3e1] transition-all ease-in-out duration-400" id="dailybtn">DAILY</button>
+                <button class="px-12 py-2.5 font-medium border border-solid border-black bg-[#e3e3e1] hover:bg-black hover:text-[#e3e3e1] transition-all ease-in-out duration-400" id="infinitebtn">INFINITE</button>
+            </div>
+        </div>
+    </div>
+    <script src="mode.js"></script>
+</body>
+</html>
