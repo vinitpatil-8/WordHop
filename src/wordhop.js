@@ -130,7 +130,7 @@ if (states == 'daily') {
 } else if (states == 'infinite') {
     console.log('infinite')
 }
- function mainFunction(e) {
+function mainFunction(e) {
     let pressedKey = e.key;
     let isLetter = /^[a-zA-Z]$/.test(pressedKey);
     if (isLetter) {
@@ -163,7 +163,6 @@ if (states == 'daily') {
             let flip2 = activeRow[2]
             let flip3 = activeRow[3]
             let flip4 = activeRow[4]
-            // animtemp(flip0, flip1, flip2, flip3, flip4, enter_anim)
 
             // input word
             let gen_word = answerGrid[currentRow].toString().split(',').join('')
@@ -212,18 +211,56 @@ if (states == 'daily') {
                     setTimeout(() => {
                         flip4.classList.add(correct_anim)
                     }, 500);
-                    // animtemp(flip0, flip1, flip2, flip3, flip4, correct_anim, correct_letter)
                 }, 1000);
-                
+
                 // correct guess
                 e.currentTarget.removeEventListener('keypress', mainFunction)
             } else {
+                let temp_word_list = temp_word.split('')
+                let gen_word_list = gen_word.split('')
+                let samePosition = [];
+                let diffPosition = [];
+                let notCommon = [];
+
+                // Make a frequency map of letters in secret word
+                let freq = {};
+                for (let ch of temp_word_list) {
+                    freq[ch] = (freq[ch] || 0) + 1;
+                }
+
+                // ---- Pass 1: Exact matches ----
+                for (let i = 0; i < gen_word_list.length; i++) {
+                    if (gen_word_list[i] === temp_word_list[i]) {
+                        samePosition.push(gen_word_list[i]);
+                        freq[gen_word_list[i]]--; // use up one occurrence
+                    } else {
+                        samePosition.push(null); // keep index for clarity (optional)
+                    }
+                }
+
+                // ---- Pass 2: Partial matches / not common ----
+                for (let i = 0; i < gen_word_list.length; i++) {
+                    if (gen_word_list[i] !== temp_word_list[i]) {
+                        let letter = gen_word_list[i];
+                        if (freq[letter] > 0) {
+                            diffPosition.push(letter);
+                            freq[letter]--; // use up one occurrence
+                        } else {
+                            notCommon.push(letter);
+                        }
+                    }
+                }
+
+                console.log("Same position:", samePosition.filter(Boolean));
+                console.log("Different position:", diffPosition);
+                console.log("Not common:", notCommon);
                 // wrong guess
                 animtemp(flip0, flip1, flip2, flip3, flip4, enter_anim)
             }
             currentRow++
             currentCol = 0
         } else {
+            // shake the row to tell user it isnt 5 letters yet
             let activeRow = rows[currentRow]
             activeRow.classList.add(wrong_anim)
             setTimeout(() => {
